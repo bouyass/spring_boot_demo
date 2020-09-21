@@ -10,6 +10,7 @@ public interface PersonDao {
     List<Person> getAllPersons();
     Person getPersonById(UUID id);
     int removePerson(UUID id);
+    int updatePerson(Person person);
 
     default int addPerson(Person person){
         UUID id = UUID.randomUUID();

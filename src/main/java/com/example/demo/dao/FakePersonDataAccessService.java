@@ -50,5 +50,19 @@ public class FakePersonDataAccessService implements PersonDao {
         return 0; // the persons doesn't exist in the list
     }
 
+    @Override
+    public int updatePerson(Person person) {
+        Iterator<Person> it = DB.iterator();
+        while(it.hasNext()){
+            Person tempPerson = it.next();
+            if(tempPerson.getId().equals(person.getId())){
+                DB.remove(tempPerson);
+                DB.add(person);
+                return 1; // the person updated successfully
+            }
+        }
+        return 0; // the person data were not able to be updated
+    }
+
 
 }

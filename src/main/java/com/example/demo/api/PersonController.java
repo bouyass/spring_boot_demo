@@ -46,4 +46,9 @@ public class PersonController {
         return personService.removePerson(id);
     }
 
+    @PostMapping
+    @RequestMapping("/update")
+    public int updatePerson(@RequestBody Person person){
+        return personService.updatePerson(person);
+    }
 }
