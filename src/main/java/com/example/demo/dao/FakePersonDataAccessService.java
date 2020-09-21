@@ -4,10 +4,7 @@ package com.example.demo.dao;
 import com.example.demo.model.Person;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Repository("fakeDao")
 public class FakePersonDataAccessService implements PersonDao {
@@ -26,15 +23,8 @@ public class FakePersonDataAccessService implements PersonDao {
     }
 
     @Override
-    public Person getPersonById(UUID id) {
-        Iterator<Person> it = DB.iterator();
-        while(it.hasNext()){
-            Person tempPerson = it.next();
-            if(tempPerson.getId().equals(id)){
-                return tempPerson;
-            }
-        }
-        return null;
+    public Optional<Person> getPersonById(UUID id) {
+        return DB.stream().filter(item -> item.getId().equals(id)).findFirst();
     }
 
     @Override

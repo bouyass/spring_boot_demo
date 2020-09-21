@@ -34,10 +34,7 @@ public class PersonController {
     @GetMapping
     @RequestMapping("/{id}")
     public Person getPersonById(@PathVariable UUID id){
-        if (personService.getPersonById(id) == null) {
-            return null;
-        }
-        return personService.getPersonById(id);
+        return personService.getPersonById(id).orElse(null);
     }
 
     @GetMapping
